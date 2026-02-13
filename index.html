@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,9 +7,9 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body { background:#0a0a0a; color:white; }
+body{background:#0a0a0a;color:white;}
 
-.glow-red { box-shadow:0 0 15px rgba(255,0,0,.6); }
+.glow-red{box-shadow:0 0 15px rgba(255,0,0,.6);}
 
 .card-hover:hover{
 transform:scale(1.03);
@@ -28,7 +28,6 @@ border-radius:8px;
 display:none;
 }
 
-/* MOVING BANNER */
 .scroll-banner{
 display:inline-block;
 padding-left:100%;
@@ -36,31 +35,36 @@ animation:scrollText 18s linear infinite;
 }
 
 @keyframes scrollText{
-0%{ transform:translateX(0); }
-100%{ transform:translateX(-100%); }
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- MOVING PROMO BANNER -->
+<!-- MOVING BANNER -->
 <div class="w-full bg-red-600 overflow-hidden whitespace-nowrap">
-  <div class="scroll-banner text-white font-bold py-2 text-sm">
-    🔥 INSTANT DELIVERY • 24/7 SUPPORT • PREMIUM VERIFIED SUPPLIERS • LIMITED TIME SALE • 🔥 INSTANT DELIVERY • 24/7 SUPPORT • PREMIUM VERIFIED SUPPLIERS • LIMITED TIME SALE •
-  </div>
+<div class="scroll-banner text-white font-bold py-2 text-sm">
+🔥 INSTANT DELIVERY • 24/7 SUPPORT • VERIFIED SUPPLIERS • LIMITED TIME SALE •
+</div>
 </div>
 
 <header class="bg-black border-b border-red-600 p-6 text-center">
-<h1 class="text-4xl font-bold text-red-500">🔥LsResells Mega Sale🔥</h1>
-<p class="text-gray-400">Limited Time Deals</p>
+
+<h1 class="text-4xl font-bold text-red-500">🔥 LsResells #1 Vender Provider! 🔥</h1>
+
 <p id="countdown" class="text-red-400 mt-2 font-bold"></p>
+
+<!-- ⭐ LIVE VISITOR COUNTER -->
+<p class="text-gray-400 mt-1">
+👀 <span id="visitorCount"></span> people viewing site right now
+</p>
+
 </header>
 
 <nav class="bg-black border-b border-red-800 p-4 flex justify-between">
-<div class="space-x-6">
-<a href="#products" class="hover:text-red-500">Shop</a>
-</div>
+<a href="#products">Shop</a>
 
 <button onclick="toggleCart()" class="bg-red-600 px-5 py-2 rounded glow-red">
 Cart (<span id="cart-count">0</span>)
@@ -69,7 +73,7 @@ Cart (<span id="cart-count">0</span>)
 
 <section id="products" class="p-10 grid grid-cols-1 md:grid-cols-3 gap-8"></section>
 
-<!-- Cart -->
+<!-- CART -->
 <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center">
 <div class="bg-zinc-900 border border-red-600 p-6 rounded w-96 max-h-[90vh] overflow-y-auto glow-red">
 
@@ -78,12 +82,6 @@ Cart (<span id="cart-count">0</span>)
 <ul id="cart-items" class="mb-4 space-y-2"></ul>
 
 <p class="font-bold mb-4">Total: $<span id="cart-total">0</span></p>
-
-<select id="payment-method" class="w-full bg-black border border-red-600 p-2 mb-4">
-<option value="card">Card</option>
-<option value="paypal">PayPal</option>
-<option value="applepay">Apple Pay</option>
-</select>
 
 <button onclick="checkout()" class="bg-red-600 w-full py-2 rounded glow-red">
 Checkout
@@ -94,10 +92,66 @@ Checkout
 </div>
 </div>
 
+<!-- LIVE PURCHASE POPUP -->
 <div id="popup" class="popup"></div>
+
+<!-- FOOTER -->
+<footer class="bg-black border-t border-red-800 mt-20">
+
+<div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 p-10 text-sm">
+
+<div>
+<h3 class="text-red-500 font-bold mb-3">Help</h3>
+<ul class="space-y-2 text-gray-300">
+<li><button onclick="openTab('faq')">FAQ</button></li>
+<li><button onclick="openTab('delivery')">Delivery</button></li>
+<li><button onclick="openTab('refund')">Refunds</button></li>
+</ul>
+</div>
+
+<div>
+<h3 class="text-red-500 font-bold mb-3">Legal</h3>
+<ul class="space-y-2 text-gray-300">
+<li><button onclick="openTab('terms')">Terms</button></li>
+<li><button onclick="openTab('privacy')">Privacy</button></li>
+</ul>
+</div>
+
+<div>
+<h3 class="text-red-500 font-bold mb-3">Support</h3>
+<ul class="space-y-2 text-gray-300">
+<li><a href="#">Discord</a></li>
+<li><a href="#">Email Support</a></li>
+</ul>
+</div>
+
+<div>
+<h3 class="text-red-500 font-bold mb-3">LsResells</h3>
+<p class="text-gray-400">#1 Trusted Vendor Provider</p>
+</div>
+
+</div>
+
+<p class="text-center text-gray-500 pb-6">© 2026 LsResells</p>
+</footer>
+
+<!-- INFO MODAL -->
+<div id="infoModal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center">
+<div class="bg-zinc-900 border border-red-600 p-8 rounded max-w-lg glow-red">
+
+<h2 id="modalTitle" class="text-xl font-bold text-red-500 mb-4"></h2>
+<p id="modalContent" class="text-gray-300 text-sm"></p>
+
+<button onclick="closeTab()" class="mt-6 bg-red-600 px-5 py-2 rounded w-full glow-red">
+Close
+</button>
+
+</div>
+</div>
 
 <script>
 
+/* PRODUCTS */
 const products=[
 { id:1,name:"Cologn Supplier",price:35,sale:15,rating:4.7,image:"https://cdn.discordapp.com/attachments/1469197712913203400/1471966673262346342/08FF1B9D-DCFD-4914-94B7-67FC5AFCAA23.png?ex=6990db4a&is=698f89ca&hm=74fa685d21cba3f4cc4281e31bfeb7edffcf28b5c5031f9647c0280d6a44ea9f&"},
 { id:2,name:"Pod Supplier",price:40,sale:15,rating:4.5,image:"https://cdn.discordapp.com/attachments/1469197712913203400/1471966905295311054/01014D5B-FC50-4BF5-9C95-758D0909C6ED.png?ex=6990db82&is=698f8a02&hm=5fe0d4f697aaee75566d3e6c5fefe7af7b9116f601f48ea4da3002497a0e5ec6&"},
@@ -107,125 +161,149 @@ const products=[
 { id:6,name:"Shirt Supplier",price:25,sale:15,rating:4.4,image:"https://cdn.discordapp.com/attachments/1469197712913203400/1471971572817596601/153BC16A-7D5A-47AF-B40A-C6F6C6DEF2D7.png?ex=6990dfda&is=698f8e5a&hm=4dfebc0016e164f38ce95da8e0c7190ad62b64d607a6565b2c37e37402bdabd6&"}
 ];
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
+let cart=[];
 
+/* COUNTDOWN */
 const endDate=new Date().getTime()+86400000;
 
 setInterval(()=>{
-let now=new Date().getTime();
-let distance=endDate-now;
-
-let h=Math.floor(distance/(1000*60*60));
-let m=Math.floor((distance%(1000*60*60))/(1000*60));
-let s=Math.floor((distance%(1000*60))/1000);
-
+let d=endDate-new Date().getTime();
 document.getElementById("countdown").innerText=
-"Sale Ends In: "+h+"h "+m+"m "+s+"s";
+"Sale Ends In "+Math.floor(d/3600000)+"h "+
+Math.floor((d%3600000)/60000)+"m "+
+Math.floor((d%60000)/1000)+"s";
 },1000);
 
+/* ⭐ FAKE VISITOR COUNTER */
+let visitors=Math.floor(Math.random()*40)+30;
+
+function updateVisitors(){
+visitors+=Math.floor(Math.random()*3)-1;
+
+if(visitors<25) visitors=25;
+if(visitors>120) visitors=120;
+
+document.getElementById("visitorCount").innerText=visitors;
+}
+setInterval(updateVisitors,4000);
+updateVisitors();
+
+/* RENDER PRODUCTS */
 function renderProducts(){
-const container=document.getElementById("products");
+let container=document.getElementById("products");
 container.innerHTML="";
 
 products.forEach(p=>{
-
-const discount=Math.round(((p.price-p.sale)/p.price)*100);
-
 container.innerHTML+=`
-<div class="bg-zinc-900 p-6 rounded border border-red-700 card-hover text-center relative">
-
-<span class="absolute top-3 left-3 bg-red-600 px-2 py-1 rounded text-sm">
-${discount}% OFF
-</span>
-
+<div class="bg-zinc-900 p-6 rounded border border-red-700 card-hover text-center">
 <img src="${p.image}" class="mx-auto mb-4 rounded">
-
 <h3 class="text-lg font-bold">${p.name}</h3>
-
-<div class="text-yellow-400">⭐ ${p.rating}</div>
-
-<p class="line-through text-gray-400">$${p.price}</p>
 <p class="text-red-400 text-xl font-bold">$${p.sale}</p>
-
-<button onclick="addToCart(${p.id})"
-class="bg-red-600 px-4 py-2 rounded mt-2 glow-red">
+<button onclick="addToCart(${p.id})" class="bg-red-600 px-4 py-2 rounded mt-2 glow-red">
 Add To Cart
 </button>
-
 </div>`;
 });
 }
 
+/* CART */
 function addToCart(id){
-const product=products.find(p=>p.id===id);
-cart.push({...product,finalPrice:product.sale});
-localStorage.setItem("cart",JSON.stringify(cart));
+let product=products.find(p=>p.id===id);
+cart.push(product);
 updateCart();
 }
 
 function updateCart(){
+
 document.getElementById("cart-count").innerText=cart.length;
 
-const items=document.getElementById("cart-items");
-const total=document.getElementById("cart-total");
+let items=document.getElementById("cart-items");
+let total=document.getElementById("cart-total");
 
 items.innerHTML="";
 let sum=0;
 
 cart.forEach((item,i)=>{
-sum+=item.finalPrice;
+sum+=item.sale;
 
 items.innerHTML+=`
 <li class="flex justify-between border-b border-red-800">
-${item.name} - $${item.finalPrice}
+${item.name} - $${item.sale}
 <button onclick="removeItem(${i})" class="text-red-500">X</button>
 </li>`;
 });
 
-if(cart.length>=3){
-sum=Math.round(sum*0.85);
-items.innerHTML+=`<li class="text-green-400">🎁 Bundle Discount Applied (15%)</li>`;
-}
-
 total.innerText=sum;
+return sum;
 }
 
 function removeItem(i){
 cart.splice(i,1);
-localStorage.setItem("cart",JSON.stringify(cart));
 updateCart();
 }
 
 function toggleCart(){
 document.getElementById("cart-modal").classList.toggle("hidden");
-updateCart();
 }
 
+/* ⭐ STRIPE AUTO MATCH */
 function checkout(){
-alert("Demo checkout complete!");
-cart=[];
-localStorage.removeItem("cart");
-updateCart();
-toggleCart();
+
+let total=updateCart();
+
+const stripeLinks={
+15:"https://buy.stripe.com/fZu00l5183UE6vc2bt5EY07",
+30:"https://buy.stripe.com/00w3cx9ho0Is9Ho2bt5EY06",
+45:"https://buy.stripe.com/aFa6oJbpw3UE4n417p5EY05",
+60:"https://buy.stripe.com/8x28wRctA4YIf1IeYf5EY04",
+75:"https://buy.stripe.com/eVq28teBIcra7zg9DV5EY03",
+90:"https://buy.stripe.com/3cI9AV1OWdve7zg2bt5EY02"
+};
+
+let link=stripeLinks[total];
+
+if(!link){alert("Checkout not configured");return;}
+
+window.location.href=link;
 }
 
+/* INFO TABS */
+function openTab(type){
+
+const tabs={
+faq:["FAQ","Suppliers delivered instantly."],
+delivery:["Delivery","Digital instant delivery."],
+refund:["Refunds","No refunds after delivery."],
+terms:["Terms","No leaking supplier info."],
+privacy:["Privacy","Payments processed securely."]
+};
+
+document.getElementById("modalTitle").innerText=tabs[type][0];
+document.getElementById("modalContent").innerText=tabs[type][1];
+document.getElementById("infoModal").classList.remove("hidden");
+}
+
+function closeTab(){
+document.getElementById("infoModal").classList.add("hidden");
+}
+
+/* FAKE PURCHASE POPUP */
 const names=["Alex.B","Jordan.T","Chris.K","Taylor.R","Morgan.S","Tez.G","Rich,T","Wanda.K","Cam.R","Robert,M"];
 
 setInterval(()=>{
-const p=products[Math.floor(Math.random()*products.length)];
-const n=names[Math.floor(Math.random()*names.length)];
+let p=products[Math.floor(Math.random()*products.length)];
+let n=names[Math.floor(Math.random()*names.length)];
 
-const popup=document.getElementById("popup");
+let popup=document.getElementById("popup");
 popup.innerText=`${n} just purchased ${p.name}`;
 popup.style.display="block";
 
 setTimeout(()=>popup.style.display="none",4000);
-},9000);
+
+},8000);
 
 renderProducts();
-updateCart();
 
 </script>
-
 </body>
 </html>
